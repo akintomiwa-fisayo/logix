@@ -230,6 +230,8 @@ class Home extends React.Component {
     }).catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
+      const { code } = error;
+
       const message = () => {
         switch (code) {
           case ('auth/email-already-in-use'):
@@ -243,27 +245,6 @@ class Home extends React.Component {
       this.setState({ loading: false }, () => {
         console.log(languageJSON.email_exist_error, error);
       });
-    });
-  }
-
-  signUp() {
-    const { state } = this;
-    const { email, password } = state;
-    firebase.auth().createUserWithEmailAndPassword(email, password).then((user) => {
-      console.log('firebase login success user', user);
-    }).catch((error) => {
-      console.log('firebase login error', error);
-      const { code } = error;
-      const message = () => {
-        switch (code) {
-          case ('auth/email-already-in-use'):
-            return 'Email is already in us';
-          default
-            : return 'Please try again';
-        }
-      };
-
-      Swal.fire('Login Failed', message(), 'error');
     });
   }
 
