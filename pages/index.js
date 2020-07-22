@@ -45,7 +45,7 @@ class Home extends React.Component {
       usertype: 'user',
     };
 
-    this.signUp = this.signUp.bind(this);
+    // this.signUp = this.signUp.bind(this);
     this.onPressRegister = this.onPressRegister.bind(this);
     this.validateFirstName = this.validateFirstName.bind(this);
     this.validateLastname = this.validateLastname.bind(this);
