@@ -1,0 +1,161 @@
+// out: false
+
+#rentalItemPage{
+
+  .featuring{
+    padding-top: 1.5em;
+    padding-bottom: $padding-top;
+    background: #ebebeb;
+
+    
+    .container{
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 55% 45%;
+
+      .preview{
+        
+      }
+
+      .infos{
+        padding: 3em 1.5em 1.5em;
+        .category{
+          margin: 0;
+          opacity: .6;
+          font-size: .85em;
+
+        }
+        
+        .actions{
+          display: grid;
+          grid-gap: 1.5em;
+          grid-auto-flow: column;
+          grid-auto-columns: auto;
+          
+          button{
+            display: inline;
+            width: 100%;
+            align-self: flex-end;
+            text-transform: uppercase;
+  
+            P{
+              margin: 0;
+  
+              &:first-child{
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+      
+    }
+  }
+  
+  
+  section{
+    .head{
+      @headBorder: solid 1px #c5c5c5;
+      @headBk: #ebebeb;
+      background: @headBk;
+      border-bottom: @headBorder;
+      border-top: @headBorder;
+      padding-top: 3em;
+
+      button{
+        padding: .8em;
+        background: transparent;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        position: relative;
+        top: 1px;
+
+        &:hover{
+          background: #e2e2e2;
+        }
+
+        &.active{
+          border: @headBorder;
+          border-bottom: none;
+          background: white;
+          color: #007bff;
+        }
+      }
+    }
+
+    .container{
+      .row{
+        padding: 1.5em 0;
+        
+        .details{
+          padding-right: 5em;
+
+          .enquiry-form{
+            .input-field{
+              margin-bottom: 2em;
+
+              .label{
+                margin: 0 0 .3em;
+                text-transform: uppercase;
+              }
+              
+              input, textarea{
+                outline: none;
+                border: solid 1px #c9c9c9;
+                width: 100%;
+                padding: .6em 1em;
+                
+                &:focus{
+                  border: solid 1px #8f8f8f;
+    
+                }
+              }
+
+              textarea{
+                height: 10em;
+              }
+              
+            }
+            
+            button{
+              text-transform: uppercase;
+
+            }
+          }
+        }
+
+        #section{
+
+          .similar-items{
+            display: flex;
+            flex-direction: column;
+            .section{
+              text-transform: capitalize;
+              font-size: .88em;
+              margin-bottom: .5em;
+
+              &.active{
+                font-weight: 500;
+              }
+            }
+          }
+
+          .sections{
+            display: flex;
+            flex-direction: column;
+            .section{
+              text-transform: uppercase;
+              color: inherit;
+              margin-bottom: .5em;
+            }
+          }
+        }
+
+      }
+      
+    }
+  }
+
+  
+}

@@ -1,0 +1,93 @@
+// out: false
+
+#rentalPage{
+
+  .featuring{
+    padding-top: 1.5em;
+    padding-bottom: $padding-top;
+    background: #ebebeb;
+
+    
+    >:last-child{
+      margin-bottom: 0;
+      
+    }
+  }
+  
+  
+  .featured-board{
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    
+    #works{
+      .work{
+        width: 100%;
+        background: #efefef;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 45% 55%;
+        min-height: 15em;
+        margin-bottom: 2em;
+        color: inherit;
+        text-decoration: none;
+        
+        .info{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 1.3em;
+          .about{
+            margin-bottom: 1em;
+  
+            p{
+              margin: 0 0 .3em;
+            }
+          }
+  
+          .phone{
+            margin: 0 0 .4em;
+  
+            a{
+              margin: 0;
+              font-size: 1.2em;
+              font-weight: 500;
+            }
+            
+          }
+          
+          button{
+            display: inline;
+            width: max-content;
+          }
+        }
+  
+        .preview{
+          width: 100%;
+  
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+  
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    #section{
+
+      .sections{
+        display: flex;
+        flex-direction: column;
+        .section{
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+
+  
+}

@@ -1,0 +1,95 @@
+[data-slideshow] {
+  width: 100%;
+}
+[data-slideshow] .screen {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+[data-slideshow] .screen .items {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-rows: 100%;
+  grid-auto-columns: 100%;
+  height: 100%;
+  width: 100%;
+  transform: translate(0px, 0px);
+  transition: transform 500ms ease-out;
+}
+[data-slideshow] .screen .items .item {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+[data-slideshow] .screen .items .item > :nth-child(1) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+[data-slideshow] .screen .items[data-move="left"] {
+  left: 0;
+  transform: translate(-100, 0px);
+}
+[data-slideshow] .screen .items[data-move="left"] {
+  left: 0;
+  transform: translate(calc(-100% / 3), 0px);
+}
+[data-slideshow] .screen .indicators {
+  position: absolute;
+  top: auto;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  padding: 1em;
+  margin: 0;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 250ms;
+}
+[data-slideshow] .screen .indicators li {
+  list-style-type: none;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  height: 0.3em;
+  max-width: 6%;
+  margin-right: 1em;
+  border-radius: 9999999999999px;
+  cursor: pointer;
+  transition: background 250ms linear;
+  box-shadow: 0px 0px 0.35em rgba(0, 0, 0, 0.2);
+}
+[data-slideshow] .screen .indicators li.active,
+[data-slideshow] .screen .indicators li:hover,
+[data-slideshow] .screen .indicators li:focus {
+  background: white;
+}
+[data-slideshow] .screen .controller {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 250ms;
+  text-shadow: 0px 0px 0.5em rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+[data-slideshow] .screen .controller:before {
+  font-size: 1.5em;
+  line-height: 1;
+  color: white;
+  opacity: 1;
+}
+[data-slideshow] .screen .controller.left {
+  left: 1em;
+}
+[data-slideshow] .screen .controller.right {
+  left: auto;
+  right: 1em;
+}
+[data-slideshow] .label {
+  font-size: 90%;
+  margin: 0.6em 0 0;
+  opacity: 0.65;
+}

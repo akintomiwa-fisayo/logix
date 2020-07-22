@@ -1,0 +1,103 @@
+// out: false
+
+#aboutPage{
+
+  #banner{
+    position: relative;
+    
+    img{
+      height: 60vh;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .featuring{
+    padding-top: 1.5em;
+    padding-bottom: $padding-top;
+
+    
+    >:last-child{
+      margin-bottom: 0;
+      
+    }
+  }
+  
+  
+  .featured-board{
+    
+    .details, .clients{
+      padding-top: 2em;
+      padding-bottom: $padding-top;
+
+    }
+  
+    .details{
+
+      padding-right: 4em;
+
+      .testimonies{
+        margin: 3em 0 0;
+        
+        .title{
+          margin: 0 0 2em;
+        }
+    
+        blockquote{
+          margin-bottom: 2em;
+          padding: 1rem .5rem;
+          
+          .holder{
+            position: relative;
+    
+            p{
+              position: relative;
+              z-index: 1;
+              text-align: start;
+              font-style: italic;
+            }
+      
+            span{
+              color: blue;
+            }
+      
+            &:before{
+              position: absolute;
+              top: -1rem;
+              left: -.5rem;
+              display: inline-block;
+              font: normal normal normal 14px/1 FontAwesome;
+              font-size: 5em;
+              text-rendering: auto;
+              -webkit-font-smoothing: antialiased;
+              content: "\f10d";
+              z-index: -1;
+              color: rgb(234, 234, 255);
+            }
+          }
+    
+        }
+      }
+    }
+
+    .clients{
+      width: 100%;
+      background: #ebebeb;
+
+      .clients-holder{
+        
+        .client{
+          display: flex;
+          width: 100%;
+          margin-bottom: 2em;
+          
+          img{
+            width: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  
+}

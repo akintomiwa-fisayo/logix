@@ -1,0 +1,175 @@
+// out: false
+@paddingTop: 3em;
+[data-slideshow]{
+  width: 100%;
+  height: 100%;
+  padding-bottom: @paddingTop;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.78);
+  top: 0;
+  left: 0;
+  z-index: 2;
+  .container;
+  
+
+  .screen-container{
+    position: relative;
+    @revealTime: 250ms;
+
+    height: 100%;
+    padding-top: @paddingTop;
+    display: flex;
+
+    .icon{
+      color: white;
+      font-size: 1.5em;
+      line-height: 1;
+      cursor: pointer;
+      opacity: .7;
+      // transition: opacity @revealTime;
+      text-shadow: 0px 0px .5em rgba(0, 0, 0,.5);  
+      
+      &.disable{
+        
+      }
+      
+      &:hover{
+        opacity: 1;
+      }
+    }
+    
+    .icon-cross{
+      position: absolute;
+      left: auto;
+      right: 0px;
+      opacity: .4;
+    }
+
+
+    .screen{
+      
+      position: relative;
+      width: 100%; 
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      // background: $background-color-2;
+      overflow: hidden;
+  
+      .items{
+        // position: absolute;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-rows: 100%;
+        grid-auto-columns: 100%;
+        height: 100%;
+        width: 100%;
+        transform: translate(0px, 0px);
+        transition: transform 500ms ease-out;
+  
+        
+        .item{
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          width: 100%;
+          overflow: hidden;
+
+          .content{
+            display: flex;
+            width: 100%;
+            
+            .item-preview{ 
+              width: 100%;
+              object-fit: contain;
+              height: auto;
+              max-height: 100%;
+              
+            }
+            
+            &.audio{
+              height: 100%;
+
+              .item-preview{
+                background: url("/images/mic.jpg");
+              background-size: cover;
+              background-position: top center;
+              background-repeat: no-repeat;
+              }
+            }
+            
+            
+          }
+
+          .label{
+            // position: absolute;
+            left: 0;
+            top: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            width: 100%;
+            padding: 1em;
+            margin: 0;
+            text-transform: capitalize;
+            transition: top @revealTime ease;
+          }
+        }
+  
+        &[data-move="left"]{
+          left: 0;
+          transform: translate(-100, 0px);
+        }
+  
+        &[data-move="left"]{
+          left: 0;
+          transform: translate(calc(-100% / 3), 0px);
+        }
+      }
+      
+      .indicators{
+        display: flex;
+        padding: 1em;
+        width: 100%;
+        margin: 0;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity @revealTime;
+    
+        li{
+          list-style-type:none;
+          display: inline-block;
+          background: rgba(255, 255, 255, 0.7);
+          width: 100%;
+          height: .3em;
+          max-width: 6%;
+          margin-right: 1em;
+          border-radius: 9999999999999px;
+          cursor: pointer;
+          transition: background 250ms linear;
+          box-shadow: 0px 0px .35em rgba(0, 0, 0, 0.2);
+    
+          &.active, &:hover, &:focus{
+            background: white;
+          }
+        }
+      }
+    
+    }
+    
+    .controller{
+      display: flex;
+      justify-self: center;
+      align-self: center;
+      opacity: 1;
+      padding: 2em; 
+      
+      .icon{
+        font-size: 2em;
+      }
+    }
+
+  }
+}

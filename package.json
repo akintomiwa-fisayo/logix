@@ -1,0 +1,50 @@
+{
+  "homepage": "http://akintomiwa-fisayo.github.io/five-mics",
+  "name": "five-mics",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "v10.16.0"
+  },
+  "scripts": {
+    "dev": "next -p 3012",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "export": "next export -o build",
+    "deploy": "gh-pages -d build",
+    "heroku-postbuild": "npm run build"
+  },
+  "dependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "axios": "^0.19.2",
+    "es6-promise": "^4.2.8",
+    "firebase": "^7.16.1",
+    "gh-pages": "^2.2.0",
+    "jquery": "^3.5.1",
+    "next": "9.3.5",
+    "next-redux-wrapper": "^6.0.2",
+    "node-sass": "^4.13.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "sweetalert2": "^9.17.0",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "css-loader": "^3.6.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "less": "^2.7.3",
+    "less-loader": "^6.1.1",
+    "style-loader": "^1.2.1"
+  }
+}

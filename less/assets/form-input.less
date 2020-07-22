@@ -1,0 +1,69 @@
+// out: false
+
+@padding: 1em;
+
+.form-input {
+  position: relative;
+  margin-bottom: 1.2
+  em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  
+  .form-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    
+    .form-input-label {
+      font-weight: 400;
+      font-size: 1em;
+      white-space: nowrap;
+      margin-bottom: 8px;
+      // padding: @padding;
+    }
+    
+    .form-input-field {
+      padding: .8em 1em;
+      width: 100%;
+      border: none;
+      outline: none;
+      // color: #8b8b8b;
+      border: solid 1px #d6d6d6;
+      transition: border-color 150ms ease-in;
+      border-radius: 10px;
+
+      &:focus{
+        border-color: #a3a3a3;
+
+      }
+    }
+  }
+
+  .form-input-message {
+    width: 100%;
+    font-size: .9em;
+    text-align: left;
+    color: red;
+    // border-bottom: solid 2px #eeeeee;
+  }
+  
+  .form-input-focus-ruler{
+    .form-input-message;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: auto;
+    border-color: @element-focus-color;
+    width: 0px;
+    transition: width 150ms ease-in;
+  }
+  
+  &.focused{
+    .form-input-focus-ruler{
+      // width: 100%;
+    }
+  }
+}

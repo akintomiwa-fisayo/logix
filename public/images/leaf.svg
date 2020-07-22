@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="980px" height="295px" viewBox="0 0 980 295" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Global/Banner</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="980" height="295"></rect>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-3">
+            <stop stop-color="#000000" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#000000" offset="49.8035585%"></stop>
+            <stop stop-color="#000000" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Global/Banner">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="BG"></g>
+            <path d="M498.134838,45.137754 L498.134838,320.292207 L980,47 L980,67.0897266 L498.134838,340.137754 L498.134838,615.292207 L980,342 L980,362.089727 L498.134838,635.137754 L498.134838,910.292207 L980,637 L980,657.089727 L498.134838,930.137754 L498.134838,987 L481,987 L481,789.102456 L0,512.841601 L0,492.751874 L481,769.256471 L481,490.726519 L0,214.465664 L0,194.375937 L481,470.880534 L481,192.350582 L0,-83.9102734 L0,-104 L481,172.504597 L481,-106.649418 L0,-382.910273 L0,-403 L481,-126.495403 L481,-283 L498.134838,-283 L498.134838,25.2922075 L980,-248 L980,-227.910273 L498.134838,45.137754 Z" id="Leaf" fill="url(#linearGradient-3)" mask="url(#mask-2)"></path>
+        </g>
+    </g>
+</svg>

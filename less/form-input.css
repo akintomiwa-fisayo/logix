@@ -1,0 +1,31 @@
+.form-input {
+  position: relative;
+  margin-bottom: 2em;
+}
+.form-input .form-input-container {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+.form-input .form-input-container .form-input-label {
+  font-weight: 700;
+  font-size: 1.1em;
+  white-space: nowrap;
+}
+.form-input .form-input-container .form-input-field {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding-left: 1em;
+}
+.form-input .form-input-ruler {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  left: auto;
+  border-bottom: solid 2px #eeeeee;
+}
+.form-input.focused .form-input-ruler {
+  border: color;
+}

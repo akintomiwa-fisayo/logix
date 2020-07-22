@@ -1,0 +1,163 @@
+@import "assets/variables.less";
+@import "assets/form-input.less";
+@import "assets/slideshow.less";
+
+// @import (inline)  "./theme.min.css";
+@import (reference)  "../public/css/demo.css";
+
+
+.link{
+  cursor: pointer;
+}
+
+b{
+  font-weight: 600;
+}
+
+a{
+  display: inline-block;
+  // text-transform: uppercase;
+  margin-bottom: .8em;
+}
+
+.uppercase{
+  // display: inline-block;
+  text-transform: uppercase;
+}
+
+
+@font-face{
+  font-family: 'bebas';
+    src:  url('/fonts/BebasNeue.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face{
+  font-family: 'header light';
+    src:  url('/fonts/header_light.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+  font-family: 'logo';
+    src:  url('/fonts/Pacifico-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container{
+  // padding-left: @pagePaddingLeft;
+  // padding-right: $padding-left;
+  width: 800px;
+
+}
+
+html{
+  font-size: @fontSize;
+  
+  body{
+    box-sizing: border-box;
+    background: @bkColor;
+    font-size: @fontSize;
+    font-family: 'Montserrat', sans-serif !important;
+    background-color: #f4f4f4;
+    font-weight: 300;
+    font-family: "Poppins";
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    
+    
+    *{
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+  
+    main{
+      position: relative;
+      padding-left: 0px;
+      padding-right: 0px;
+      z-index: 1;
+  
+    }
+  
+    .bolder{
+      font-weight: 800;
+    }
+    
+    >div.loader {
+      position: fixed;
+      background: white;
+      width: 100%;
+      height: 100%;
+      z-index: 1071;
+      opacity: 0;
+      transition: opacity .5s ease;
+      overflow: hidden;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .desktop {
+      display: block !important;
+    }
+    
+    .mobile {
+      display: none !important;
+    }
+    
+    @media only screen and (max-width: 980px) {
+      .mobileh1 {
+        margin-top: -10px !important;
+        z-index: -1 !important;
+        
+      }
+      
+      .xxd {
+        z-index: -1 !important;
+        color: rgb(255, 255, 255);
+        font-size: 14px;
+        margin: 14px 0px 11px;
+        font-style: normal;
+        font-family: "Open Sans", sans-serif;
+        padding: 5px 6px;
+        line-height: 14px;
+        text-shadow: none;
+        background: rgba(0, 0, 0, 0.5);
+        transition: none 0s ease 0s;
+        text-align: inherit;
+        
+        font-weight: 300;
+        
+        margin-top: -60px;
+        opacity: 0.5;
+      }
+      
+      .desktop {
+        display: none !important;
+      }
+  
+      .mobile {
+        display: block !important;
+      }
+  
+    }
+    
+  }
+}
+
+@import "./header.less";
+@import "./footer.less";
+@import "./home.less";
+@import "./about.less";
+@import "./latest-wrok.less";
+@import "./contact.less";
+@import "./rental.less";
+@import "./rental-category.less";
+@import "./rental-item.less";
+@import "./sign-up.less";

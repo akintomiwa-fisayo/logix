@@ -1,0 +1,57 @@
+#signUpPage {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 50% 50%;
+  background: #3a1717;
+  padding-top: 3em;
+}
+#signUpPage > section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+#signUpPage > section.left {
+  color: white;
+}
+#signUpPage > section.left img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+#signUpPage > section.right {
+  background: white;
+  padding: 5em;
+}
+#signUpPage > section.right h1 {
+  margin: 0 0 0.3em;
+}
+#signUpPage > section.right #accountType {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr 1fr;
+  grid-gap: 1em;
+  padding: 0 2em;
+}
+#signUpPage > section.right #accountType .account-type {
+  border-radius: 5px;
+  border: solid 2px #f0f0f0;
+  padding: 10px;
+  cursor: pointer;
+}
+#signUpPage > section.right #accountType .account-type .icon {
+  width: 100%;
+  height: auto;
+}
+#signUpPage > section.right #accountType .account-type .title {
+  margin: 0.3em 0 0;
+  text-align: center;
+}
+#signUpPage > section.right #accountType .account-type:hover,
+#signUpPage > section.right #accountType .account-type:focus {
+  background: #fafafa;
+  border-color: #ededed;
+}
