@@ -6,7 +6,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Link from 'next/link';
 import * as firebase from 'firebase/app';
-import languageJSON from '../language';
 
 // Add the Firebase services that you want to use
 import 'firebase/auth';
@@ -14,8 +13,7 @@ import 'firebase/firestore';
 import 'firebase/database';
 import Swal from 'sweetalert2';
 import Layout from '../components/general/Layout';
-import { Projects, Clients } from '../public/data.json';
-import SlideShow from '../components/slideShow/SlideShow';
+import languageJSON from '../language';
 import FormInput from '../components/general/FormInput';
 import { parseQueryString } from '../lib/custom';
 
@@ -70,6 +68,7 @@ class Home extends React.Component {
     firebase.initializeApp(firebaseConfig);
 
     const query = parseQueryString(window.location.href);
+    console.log('our query', query);
     if (query.refferalId) {
       this.setState({ refferalId: query.refferalId });
     }
@@ -86,54 +85,99 @@ class Home extends React.Component {
     const cnfPwdValid = this.validateConfPassword();
 
     if (!state.loading && fnameValid && lnameValid && emailValid && mobileValid && passwordValid && cnfPwdValid) {
-      this.setState({ loading: true });
-      console.log('1', { state });
-      if (state.refferalId !== '') {
-        const userRoot = firebase.database().ref('users/');
-        console.log('2', userRoot);
+      this.clickRegister(state.fname, state.lname, state.email, state.mobile, state.password);
+    }
+  }
+
+  clickRegister(fname, lname, email, mobile, password) {
+    this.setState({ loading: true });
+    // console.log(firebase.auth().currentUser)
+    // console.log("registration data===>",regData)
+    //  Registration part
+    firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
+      console.log('user created');
+      if (newUser) {
+        const databaseRef = firebase.database().ref();
+        // get All users
+        const userRoot = databaseRef.child('users/');
+        let refferalVia = null;
+        let flag = false;
+
         userRoot.once('value', (userData) => {
-          if (userData.val()) {
-            console.log('3', userData);
-            console.log('4');
-            const allUsers = userData.val();
-            let referralVia = null;
-            let flag = false;
+          const allUsers = userData.val();
+          console.log('user validated');
+
+          if (this.state.refferalId !== '') {
             for (const key in allUsers) {
               if (allUsers[key].refferalId) {
-                if (state.refferalId.toLowerCase() === allUsers[key].refferalId) {
+                console.log({ key: allUsers[key] });
+                console.log({ state: this.state.refferalId.toLowerCase(), userKey: allUsers[key].refferalId });
+                if (this.state.refferalId.toLowerCase() === allUsers[key].refferalId) {
                   flag = true;
-                  referralVia = {
+                  refferalVia = {
                     userId: key,
                     refferalId: allUsers[key].refferalId,
                   };
+                  console.log('found the guy', { flag, refferalVia });
                   break;
-                } else {
-                  flag = false;
                 }
               }
             }
-            if (flag === true) {
-              console.log('5');
-              this.setState({ refferalIdValid: true, loading: false });
-              this.clickRegister(state.fname, state.lname, state.email, state.mobile, state.password, true, referralVia);
-            } else {
-              this.setState({ refferalIdValid: false, loading: false });
-              this.clickRegister(state.fname, state.lname, state.email, state.mobile, state.password, false, null);
-            }
-
-            this.setState({
-              fname: '', lname: '', email: '', mobile: '', password: '', confPassword: '', refferalId: '',
-            });
           }
-        });
-      } else {
-        // refferal id is blank
-        this.clickRegister(state.fname, state.lname, state.email, state.mobile, state.password, false, null);
-        this.setState({
-          fname: '', lname: '', email: '', mobile: '', password: '', confPassword: '', refferalId: '',
+          const regData = {
+            firstName: fname,
+            lastName: lname,
+            mobile,
+            email,
+            usertype: 'user',
+            signupViaReferral: flag,
+            referarDetails: refferalVia,
+            createdAt: new Date().toISOString(),
+          };
+
+          console.log({ regData });
+          firebase.auth().currentUser.updateProfile({
+            displayName: `${regData.firstName} ${regData.lastName}`,
+          }).then(() => {
+            console.log('user updated');
+            firebase.database().ref('users/').child(firebase.auth().currentUser.uid).set(regData)
+              .then(() => {
+                console.log('seems user was signed');
+                // alert('registration complete');
+                Swal.fire('Account created successfully', 'download Logix on Google Play Store and log in into you account', 'success');
+                this.setState({
+                  fname: '',
+                  lname: '',
+                  email: '',
+                  mobile: '',
+                  password: '',
+                  confPassword: '',
+                  // refferalId: '',
+                  loading: false,
+                });
+              });
+          });
         });
       }
-    }
+    }).catch((error) => {
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      const { code } = error;
+
+      const message = () => {
+        switch (code) {
+          case ('auth/email-already-in-use'):
+            return 'Email is already in us';
+          default
+            : return 'Please try again';
+        }
+      };
+
+      Swal.fire('Login Failed', message(), 'error');
+      this.setState({ loading: false }, () => {
+        console.log(languageJSON.email_exist_error, error);
+      });
+    });
   }
 
   // first name validation
@@ -196,58 +240,6 @@ class Home extends React.Component {
     return cnfPwdValid;
   }
 
-  clickRegister(fname, lname, email, mobile, password, viaRef, referralVia) {
-    this.setState({ loading: true });
-    const regData = {
-      firstName: fname,
-      lastName: lname,
-      mobile,
-      email,
-      usertype: 'user',
-      signupViaReferral: viaRef,
-      referarDetails: referralVia,
-      createdAt: new Date().toISOString(),
-    };
-    // console.log(firebase.auth().currentUser)
-    // console.log("registration data===>",regData)
-    //  Registration part
-    firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
-      console.log('user created');
-      if (newUser) {
-        console.log('user validated');
-        firebase.auth().currentUser.updateProfile({
-          displayName: `${regData.firstName} ${regData.lastName}`,
-        }).then(() => {
-          console.log('user updated');
-          firebase.database().ref('users/').child(firebase.auth().currentUser.uid).set(regData)
-            .then(() => {
-              console.log('seems user was signed');
-              // alert('registration complete');
-              Swal.fire('Account created successfully', 'download Logix on Google Play Store and log in into you account', 'success');
-            });
-        });
-      }
-    }).catch((error) => {
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      const { code } = error;
-
-      const message = () => {
-        switch (code) {
-          case ('auth/email-already-in-use'):
-            return 'Email is already in us';
-          default
-            : return 'Please try again';
-        }
-      };
-
-      Swal.fire('Login Failed', message(), 'error');
-      this.setState({ loading: false }, () => {
-        console.log(languageJSON.email_exist_error, error);
-      });
-    });
-  }
-
   render() {
     const { state, props } = this;
     const { header } = props.settings;
@@ -271,6 +263,7 @@ class Home extends React.Component {
                   <div className="fields">
                     <FormInput
                       label="First Name"
+                      value={state.fname}
                       errorMessage={state.fnameValid ? null : languageJSON.first_name_blank_error}
                       onChange={(fname) => {
                         this.setState({ fname });
@@ -278,6 +271,7 @@ class Home extends React.Component {
                     />
                     <FormInput
                       label="Last Name"
+                      value={state.lname}
                       errorMessage={state.lnameValid ? null : languageJSON.last_name_blank_error}
                       onChange={(lname) => {
                         this.setState({ lname });
@@ -285,6 +279,7 @@ class Home extends React.Component {
                     />
                     <FormInput
                       label="Email"
+                      value={state.email}
                       errorMessage={state.emailValid ? null : languageJSON.valid_email_check}
                       onChange={(email) => {
                         this.setState({ email });
@@ -292,6 +287,7 @@ class Home extends React.Component {
                     />
                     <FormInput
                       label="mobile"
+                      value={state.mobile}
                       errorMessage={state.mobileValid ? null : languageJSON.mobile_no_blank_error}
                       onChange={(mobile) => {
                         this.setState({ mobile });
@@ -299,6 +295,7 @@ class Home extends React.Component {
                     />
                     <FormInput
                       label="Password"
+                      value={state.password}
                       type="password"
                       errorMessage={state.passwordValid ? null : this.state.pwdErrorMsg}
                       onChange={(password) => {
@@ -308,6 +305,7 @@ class Home extends React.Component {
 
                     <FormInput
                       label="Confirm Password"
+                      value={state.confPassword}
                       type="password"
                       errorMessage={state.cnfPwdValid ? null : languageJSON.confrim_password_not_match_err}
                       onChange={(confPassword) => {

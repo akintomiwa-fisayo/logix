@@ -62,7 +62,7 @@ class FormInput extends React.Component {
               <textarea
                 type={type}
                 className="form-input-field"
-                value={value || state.value}
+                value={props.value ? value : state.value}
                 placeholder={props.placeholder}
                 onChange={this.onChange}
                 onKeyDown={this.onKeyDown}
@@ -75,7 +75,7 @@ class FormInput extends React.Component {
                 type={type}
                 className="form-input-field"
                 placeholder={props.placeholder}
-                value={value || state.value}
+                value={props.value ? value : state.value}
                 onChange={this.onChange}
                 onKeyDown={this.onKeyDown}
                 onFocus={this.onFocus}
